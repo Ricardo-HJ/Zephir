@@ -1,42 +1,30 @@
-"use client"
-
-import type React from "react"
-
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import styles from "./page.module.css"
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import Image from 'next/image';
+import styles from '@/styles/login.module.css';
 
 export default function LoginPage() {
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
-  const router = useRouter()
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const router = useRouter();
 
   const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (username === "user" && password === "password") {
-      router.push("/home")
+    e.preventDefault();
+    if (username === 'user' && password === 'password') {
+      localStorage.setItem('isLoggedIn', 'true');
+      router.push('/home');
     } else {
-      alert("Invalid credentials")
+      setError('Invalid credentials');
     }
-  }
+  };
 
   return (
     <div className={styles.container}>
       <div className={styles.card}>
         <div className={styles.logoContainer}>
           <div className={styles.logo}>
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className={styles.logoIcon}
-            >
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-              <circle cx="12" cy="7" r="4"></circle>
-            </svg>
+            <Image src="/Logo_V1.png" alt="Logo" width={40} height={40} className={styles.logoImage} />
           </div>
         </div>
         <h1 className={styles.title}>Login</h1>
@@ -56,12 +44,12 @@ export default function LoginPage() {
               required
             />
           </div>
+          {error && <p className={styles.error}>{error}</p>}
           <button type="submit" className={styles.button}>
             Log in
           </button>
         </form>
       </div>
     </div>
-  )
+  );
 }
-
