@@ -14,7 +14,7 @@ const MenuBar = () => {
     <nav className={styles.menuBar}>
       <Link href="/home" className={styles.menuItem}>Home</Link>
       <Link href="/about" className={styles.menuItem}>About</Link>
-      <Link href="/dashboard" className={styles.menuItem}>Dashboard</Link>
+      <Link href="/quotes" className={styles.menuItem}>quotes</Link>
       <Link href="/profile" className={styles.menuItem}>Profile</Link>
       <button onClick={handleLogout} className={styles.menuItem}>Logout</button>
     </nav>
